@@ -38,7 +38,7 @@ export class AppComponent {
   signUpForm : any ;
   constructor(private fb : FormBuilder){
     this.signUpForm = this.fb.group({
-      username : ['' , ],
+      username : ['' , [this.NospaceValidator()]],
       password : [ '' ,[this.createPasswordStrengthValidator()] ]
     })
   }
@@ -79,15 +79,17 @@ NospaceValidator(): ValidatorFn {
       // const hasLowerCase = /[a-z]+/.test(value);
 
       // const hasNumeric = /[0-9]+/.test(value);
-
+      let result = true;
       let strArray = value.split('');
       strArray.forEach((x : string) => {
-        
+        if(x == ""){
+          result = false
+        }
       });
 
       //const passwordValid = hasUpperCase && hasLowerCase && hasNumeric;
 
-     // return !passwordValid ? {passwordStrength:true}: null;
+      return !result ? {noSpace:true}: null;
   }
 }
 
