@@ -80,28 +80,39 @@
 <br>
 <br>
 
-<h2>Dynamic validation : Age verification</h2>
+
 <div class="container-fluid">
-  <form #validationForm="ngForm">
-    <div class="mb-3">
-      <label for="username" class="form-label">Username : </label>
-      <input type="" class="form-control" id="" name="username" [(ngModel)]="student.name" required>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <h2>Dynamic validation : Age verification</h2>
+      <form #validationForm="ngForm">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username : </label>
+          <input type="" class="form-control" id="" name="username" [(ngModel)]="student.name" required>
 
-    </div>
-    <div class="mb-3">
-      <label for="dob" class="form-label">Date of Birth : </label>
-      <input type="" class="form-control" id="" name="dob" [(ngModel)]="student.dateOfBirth" required>
-    </div>
-    <div class="mb-3">
-      <label for="age" class="form-label">Age : </label>
-      <input type="number" class="form-control" id="" name="age" [(ngModel)]="student.age" min="18" required>
-      <div id="" class="form-text text-danger" *ngIf="student.age < 18 && validationForm.controls.age?.touched">Age must
-        be greater than 18</div>
-    </div>
+        </div>
+        <div class="mb-3">
+          <label for="dob" class="form-label">Date of Birth : </label>
+          <input type="" class="form-control" id="" name="dob" [(ngModel)]="student.dateOfBirth" required>
+        </div>
+        <div class="mb-3">
+          <label for="age" class="form-label">Age : </label>
+          <input type="number" class="form-control" id="" name="age" [(ngModel)]="student.age" min="18" required>
+          <div id="" class="form-text text-danger" *ngIf="student.age < 18 && validationForm.controls.age?.touched">Age
+            must
+            be greater than 18</div>
+        </div>
 
-    <button type="submit" class="btn btn-primary" [disabled]="validationForm.invalid">Submit</button>
-  </form>
+        <button type="submit" class="btn btn-primary" [disabled]="validationForm.invalid">Submit</button>
+      </form>
+    </div>
+    <div class="col-2"></div>
+  </div>
 </div>
+
+
+
 
 <br>
 <br>
@@ -112,16 +123,16 @@
       <h2>Contact form with reset functionality</h2>
       <form #contactForm="ngForm" (ngSubmit)="onContactSubmit(contactForm)">
         <div class="mb-3">
-          <label for="name" class="form-label" >Name : </label>
+          <label for="name" class="form-label">Name : </label>
           <input type="text" class="form-control" id="" name="name" [(ngModel)]="contactDetails.name" required>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Email : </label>
-          <input type="text" class="form-control" id="" name="email"  [(ngModel)]="contactDetails.email" >
+          <input type="text" class="form-control" id="" name="email" [(ngModel)]="contactDetails.email">
         </div>
         <div class="mb-3">
           <label for="message" class="form-label">Message : </label>
-          <input type="" class="form-control" id="" name="message"  [(ngModel)]="contactDetails.message" >
+          <input type="" class="form-control" id="" name="message" [(ngModel)]="contactDetails.message">
         </div>
 
         <div *ngIf="contactSubmitted == true" class="text text-success mb-3">
@@ -135,6 +146,7 @@
   </div>
 </div>
 
+
 <br>
 <br>
 <div class="container-fluid">
@@ -144,18 +156,19 @@
       <h2>Custom validator : No spaces Allowed</h2>
       <form [formGroup]="signUpForm">
         <div class="mb-3">
-          <label for="" class="form-label"></label>
+          <label for="" class="form-label">Username</label>
           <input type="text" class="form-control" id="" formControlName="username">
-          <div id="" class="form-text" *ngIf="signUpForm.controls.username?.errors?.passwordStrength">We'll never share your email with anyone else.</div>
+          <div id="" class="form-text text-danger" *ngIf="signUpForm.controls.username?.errors?.noSpace">Username must
+            not contain spaces</div>
         </div>
         <div class="mb-3">
           <label for="" class="form-label">Password</label>
           <input type="password" class="form-control" id="" formControlName="password">
           <div class="field-message" *ngIf="signUpForm.controls.password?.errors?.passwordStrength">
             Your password must have lower case, upper case and numeric characters.
+          </div>
         </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Submit</button>
       </form>
     </div>
     <div class="col-2"></div>

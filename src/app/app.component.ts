@@ -65,6 +65,8 @@ export class AppComponent {
         return !passwordValid ? {passwordStrength:true}: null;
     }
 }
+
+
 NospaceValidator(): ValidatorFn {
   return (control:AbstractControl) : ValidationErrors | null => {
 
@@ -82,7 +84,7 @@ NospaceValidator(): ValidatorFn {
       let result = true;
       let strArray = value.split('');
       strArray.forEach((x : string) => {
-        if(x == ""){
+        if(x == " "){
           result = false
         }
       });
